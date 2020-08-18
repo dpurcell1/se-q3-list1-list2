@@ -5,7 +5,10 @@ Kenzie assignment: List2
 """
 # Your name, plus anyone who helped you with this assignment.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = """Darrell Purcell with help from
+            https://www.youtube.com/watch?v=VbBozykILZ0
+            https://stackoverflow.com
+            /questions/7237875/linear-merging-for-lists-in-python"""
 
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
@@ -28,8 +31,14 @@ __author__ = "???"
 
 
 def remove_adjacent(nums):
-    # your code here
-    return
+    newList = []
+    for i in range(len(nums)):
+        if i < len(nums) - 1:
+            if nums[i] != nums[i + 1]:
+                newList.append(nums[i])
+        elif nums[i] != newList[-1]:
+            newList.append(nums[i])
+    return newList
 
 
 # E. zip_merge
@@ -43,8 +52,10 @@ def remove_adjacent(nums):
 
 
 def zip_merge(list1, list2):
-    # your code here
-    return
+    newList = []
+    for i, j in zip(list1, list2):
+        newList.append(i + j)
+    return newList
 
 
 # F. empty_filter
@@ -57,8 +68,11 @@ def zip_merge(list1, list2):
 
 
 def empty_filter(list1):
-    # your code here
-    return
+    newList = []
+    for i in range(len(list1)):
+        if list1[i] != '' and list1[i] is not None:
+            newList.append(list1[i])
+    return newList
 
 
 # G. linear_merge
@@ -73,8 +87,17 @@ def empty_filter(list1):
 
 
 def linear_merge(list1, list2):
-    # your code here
-    return
+    newList = []
+    while len(list1) > 0 and len(list2) > 0:
+        if list1[0] < list2[0]:
+            newList.append(list1.pop(0))
+        else:
+            newList.append(list2.pop(0))
+    if len(list1) == 0:
+        newList += list2
+    else:
+        newList += list1
+    return newList
 
 
 # Provided simple test() function used in main() to print
